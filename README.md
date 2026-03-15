@@ -1,7 +1,7 @@
 # HASKELL-OPAC
 Online Public Access Catalog (OPAC) Project for 6DIPROGLANG under the Haskell Group
 
-## Members
+## Members (CS-202)
 - Calaguas, Kline Sison
 - Kayama, Masaharu
 - Manapul, Lester John
