@@ -30,17 +30,25 @@ library
       CLI.Display
       CLI.Prompt
       CLI.Repl
+      CLI.User.Actions
       CLI.User.Auth
       DB.Connection
       DB.Migration
       DB.Schema
       Models.Book
       Models.BorrowRecord
+      Models.Reservation
       Models.User
       Queries.Book
       Queries.BorrowRecord
       Queries.User
       Services.Auth
+      Queries.Reservation
+      Queries.User
+      Services.Auth
+      Services.Borrow
+      Services.Profile
+      Services.Reservation
   other-modules:
       Paths_haskell_opac
   autogen-modules:

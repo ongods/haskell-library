@@ -43,3 +43,13 @@ createBorrowRecordsTable =
     \ return_date TEXT,\
     \ is_returned INTEGER NOT NULL DEFAULT 0\
     \)"
+
+createReservationsTable :: Query
+createReservationsTable =
+  fromString
+    "CREATE TABLE IF NOT EXISTS reservations (\
+    \ reservation_id INTEGER PRIMARY KEY AUTOINCREMENT,\
+    \ user_id INTEGER NOT NULL REFERENCES users(user_id),\
+    \ book_id INTEGER NOT NULL REFERENCES books(book_id),\
+    \ reservation_date TEXT NOT NULL\
+    \)"
