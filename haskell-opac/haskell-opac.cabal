@@ -1,6 +1,6 @@
 cabal-version: 2.2
 
--- This file has been generated from package.yaml by hpack version 0.38.1.
+-- This file has been generated from package.yaml by hpack version 0.39.1.
 --
 -- see: https://github.com/sol/hpack
 
@@ -27,6 +27,7 @@ library
   exposed-modules:
       App.Env
       App.Error
+      CLI.Admin.Repl
       CLI.Display
       CLI.Prompt
       CLI.Repl
@@ -37,14 +38,18 @@ library
       DB.Schema
       Models.Book
       Models.BorrowRecord
+      Models.Copy
       Models.Reservation
       Models.User
+      Queries.AuditLog
       Queries.Book
       Queries.BorrowRecord
+      Queries.Copy
       Queries.Reservation
       Queries.User
       Services.Auth
       Services.Borrow
+      Services.Notification
       Services.Profile
       Services.Reservation
   other-modules:
