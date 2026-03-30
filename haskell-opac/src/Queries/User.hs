@@ -5,6 +5,8 @@ module Queries.User
   , getUserByEmail
   , getUserByID
   , getAllUsers
+  , updateUserProfile
+  , updateUserPassword
   , deleteUser
   ) where
 
@@ -46,6 +48,25 @@ getAllUsers :: AppM [User]
 getAllUsers = do
   conn <- asks envConnection
   liftIO $ query_ conn "SELECT * FROM users"
+
+updateUserProfile :: User -> AppM ()
+updateUserProfile u = do
+  conn <- asks envConnection
+  liftIO $ execute conn
+    "UPDATE users SET first_name = ?, last_name = ?, occupation = ?, organization = ? WHERE user_id = ?"
+    ( userFirstName u
+    , userLastName u
+    , userOccupation u
+    , userOrganization u
+    , userID u
+    )
+
+updateUserPassword :: Int -> Text -> AppM ()
+updateUserPassword uid hash = do
+  conn <- asks envConnection
+  liftIO $ execute conn
+    "UPDATE users SET password_hash = ? WHERE user_id = ?"
+    (hash, uid)
 
 deleteUser :: Int -> AppM ()
 deleteUser uid = do

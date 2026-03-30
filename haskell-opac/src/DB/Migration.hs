@@ -8,6 +8,7 @@ where
 import DB.Schema
   ( createBooksTable,
     createBorrowRecordsTable,
+    createReservationsTable,
     createUsersTable,
   )
 import Data.String (fromString)
@@ -43,6 +44,10 @@ migrations =
       [ \conn -> execute_ conn createUsersTable,
         \conn -> execute_ conn createBooksTable,
         \conn -> execute_ conn createBorrowRecordsTable
+      ]
+    ),
+    ( 2,
+      [ \conn -> execute_ conn createReservationsTable
       ]
     )
   ]
