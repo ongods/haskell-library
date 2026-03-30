@@ -1,4 +1,4 @@
-# HasQLibrary
+# HaskQLibrary
 ## Haskell-Based Open Public Access Catalog System
 
 Table of Contents
