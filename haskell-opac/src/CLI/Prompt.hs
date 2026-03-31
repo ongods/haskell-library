@@ -5,12 +5,14 @@ module CLI.Prompt
   , askHidden
   , confirm
   , selectFrom
+  , askDate
   ) where
 
 import Data.Text (Text)
 import qualified Data.Text as T
 import qualified Data.Text.IO as TIO
 import System.IO (hSetEcho, stdin, hFlush, stdout)
+import Data.Time (Day, fromGregorianValid)
 
 -- Ask for a text input
 ask :: Text -> IO Text
@@ -58,3 +60,28 @@ selectFrom prompt options = do
       return Nothing
   where
     printOption (i, opt) = TIO.putStrLn $ "  " <> T.pack (show i) <> ". " <> opt
+
+-- Ask for a date
+askDate :: Text -> IO Day
+askDate prompt = do
+  TIO.putStrLn prompt
+  year <- askInt "Year (YYYY)"
+  month <- askInt "Month (MM)"
+  day <- askInt "Day (DD)"
+  case fromGregorianValid (toInteger year) month day of
+    Just d  -> return d
+    Nothing -> do
+      putStrLn "Invalid date provided. Please try again."
+      askDate prompt
+
+-- Internal helper for numeric input
+askInt :: Text -> IO Int
+askInt prompt = do
+  TIO.putStr $ "  " <> prompt <> ": "
+  hFlush stdout
+  input <- getLine
+  case reads input of
+    [(n, "")] -> return n
+    _ -> do
+      putStrLn "Please enter a valid number."
+      askInt prompt

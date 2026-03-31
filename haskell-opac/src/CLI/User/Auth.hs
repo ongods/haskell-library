@@ -7,13 +7,12 @@ module CLI.User.Auth
 
 import Control.Monad.IO.Class (liftIO)
 import qualified Data.Text as T
-import Data.Time (fromGregorian)
 import App.Env (AppM)
 import App.Error (AppError(..))
 import Models.User (User(..))
 import Services.Auth (registerUser, loginUser)
 import CLI.Display (printHeader, printSuccess, printError)
-import CLI.Prompt (ask, askHidden, selectFrom)
+import CLI.Prompt (ask, askHidden, selectFrom, askDate)
 
 registerScreen :: AppM ()
 registerScreen = do
@@ -28,8 +27,7 @@ registerScreen = do
   let uType = case userTypeChoice of
                 Just 2 -> "admin"
                 _      -> "user"
-  -- Simple fixed birth date for now, can be improved later
-  let birthDate = fromGregorian 2000 1 1
+  birthDate <- liftIO $ askDate "Enter Birth Date"
   result <- registerUser email password firstName lastName
               birthDate occupation organization uType
   case result of
