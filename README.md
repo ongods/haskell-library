@@ -102,7 +102,7 @@ The app is organized into four layers, each building on the one below it.
 
 Everything runs inside `AppM`, a `ReaderT Env IO` monad that carries the database connection through the entire app without passing it explicitly to every function.
 
---
+---
 
 ## Contributors
 | Name | Role |
